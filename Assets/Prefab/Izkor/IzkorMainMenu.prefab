@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1055914986330465796}
   - component: {fileID: 4321948878445682591}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: SearchButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 7417240320258219855}
   - component: {fileID: 2243942037122497272}
   m_Layer: 5
-  m_Name: Title All
+  m_Name: FullTitleCluster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

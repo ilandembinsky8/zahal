@@ -2,7 +2,7 @@
 using System.Text;
 using UnityEngine;
 
-public class SearchManager : MonoBehaviour
+public class SearchManager
 {
     const string IZKOR_HOMEPAGE = "https://www.izkor.gov.il\\";
     const string SEARCH_PREFIX = "searchforMemoryCandle\\";
