@@ -8,19 +8,27 @@ public class LastKinObject : MonoBehaviour
 {
     [SerializeField] private RTLTextMeshPro fullNameText;
     [SerializeField] private Button SearchButton;
+    [SerializeField] private StringEventChannel eventChannel;
 
-    private SearchManager searchManager;
     private Casualty lastKinCasualtyData;
     
     private string nameToSearch;
 
     public void Init(Casualty lastKinCasualtyData)
     {
-        searchManager = new();
         this.lastKinCasualtyData = lastKinCasualtyData;
 
         UpdateText();
+    }
+
+    private void OnEnable()
+    {
         SearchButton.onClick.AddListener(SearchMe);
+    }
+
+    private void OnDisable()
+    {
+        SearchButton.onClick.RemoveAllListeners();
     }
 
     private void UpdateText()
@@ -58,11 +66,6 @@ public class LastKinObject : MonoBehaviour
 
     private void SearchMe()
     {
-        searchManager.LastKinFullNameSearch(nameToSearch);
-    }
-
-    private void OnDisable()
-    {
-        SearchButton.onClick.RemoveAllListeners();
+        eventChannel.Raise(nameToSearch);
     }
 }

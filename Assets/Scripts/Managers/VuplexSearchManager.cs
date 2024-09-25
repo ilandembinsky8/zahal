@@ -4,14 +4,19 @@ using Vuplex.WebView;
 
 public class VuplexSearchManager : BaseSearchManager
 {
-    [SerializeField] private CanvasWebViewPrefab webViewPrefab;
+    private CanvasWebViewPrefab webViewPrefab;
+    private StringEventChannel eventChannel;
+    
     private IWebView webView;
 
-    public void Init(CanvasWebViewPrefab webViewPrefab)
+    public void Init(CanvasWebViewPrefab webViewPrefab, StringEventChannel eventChannel)
     {
         this.webViewPrefab = webViewPrefab;
+        this.eventChannel = eventChannel;
+        
+        this.eventChannel.RegisterEvent(s => LastKinFullNameSearch(s));
     }
-
+    
     public override void FullNameSearch(string fullNameString)
     {
         WaitIntilInit(FullNameURLStringMaker(WWW.EscapeURL(fullNameString)));

@@ -387,3 +387,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullNameText: {fileID: 1624645220372750691}
   SearchButton: {fileID: 2810116588143651080}
+  eventChannel: {fileID: 11400000, guid: f8d6a193d882d8946b4e61234dc7e364, type: 2}
