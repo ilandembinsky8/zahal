@@ -1,22 +1,26 @@
 ﻿using RTLTMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Vuplex.WebView;
 
 public class LastKinSearch : MonoBehaviour
 {
     [SerializeField] private RTLTextMeshPro firstNameInput;
     [SerializeField] private RTLTextMeshPro lastNameInput;
     [SerializeField] private Button searchButton;
+    [SerializeField] private CanvasWebViewPrefab webViewPrefab;
     
-    private SearchManager searchManager;
+    private VuplexSearchManager searchManager;
     
     private void Awake()
     {
-        searchManager = new SearchManager();
+        searchManager = new ();
+        searchManager.Init(webViewPrefab);
     }
 
     private void OnEnable()
     {
+        searchButton.onClick.AddListener(() => webViewPrefab.transform.parent.gameObject.SetActive(true));
         searchButton.onClick.AddListener(SearchButton);
     }
 
