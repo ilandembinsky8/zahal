@@ -2,23 +2,38 @@
 using RTLTMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Vuplex.WebView;
 
 public class IzkorSearch : MonoBehaviour
 {
     [SerializeField] private RTLTextMeshPro firstNameInput;
     [SerializeField] private RTLTextMeshPro lastNameInput;
     [SerializeField] private Button searchButton;
+    [SerializeField] private CanvasWebViewPrefab canvasWebViewPrefab;
+    [SerializeField] private StringEventChannel izokrEventChannel;
+
+    [Header("Go References")] 
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private GameObject SearchMenu;
+    [SerializeField] private GameObject VuplexWebView;
     
-    private SearchManager searchManager;
+    private VuplexSearchManager searchManager;
     
     private void Awake()
     {
-        searchManager = new SearchManager();
+        searchManager = new ();
+        searchManager.InitIzkor(izokrEventChannel,canvasWebViewPrefab);
     }
 
     private void OnEnable()
     {
-        searchButton.onClick.AddListener(SearchButton);
+        izokrEventChannel.RegisterEvent(s => EnableWebView());
+        searchButton.onClick.AddListener(OnSearchButtonClicked);
+    }
+    
+    private void OnSearchButtonClicked()
+    {
+        izokrEventChannel.Raise($"{firstNameInput.text} {lastNameInput.text}");
     }
 
     private void OnDisable()
@@ -26,8 +41,28 @@ public class IzkorSearch : MonoBehaviour
         searchButton.onClick.RemoveAllListeners();
     }
 
-    private void SearchButton()
+    #region GameObjectActivation
+    
+    public void EnableWebView()
     {
-        searchManager.FullNameSearch($"{firstNameInput.text} {lastNameInput.text}");
+        VuplexWebView.SetActive(true);
+        MainMenu.SetActive(true);
+        SearchMenu.SetActive(false);
     }
+
+    public void ReturnToMainMenu()
+    {
+        MainMenu.SetActive(true);
+        VuplexWebView.SetActive(false);
+        SearchMenu.SetActive(false);
+    }
+
+    public void EnableSearch()
+    {
+        MainMenu.SetActive(false);
+        VuplexWebView.SetActive(false);
+        SearchMenu.SetActive(true);
+    }
+    
+    #endregion
 }

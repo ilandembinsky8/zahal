@@ -25,7 +25,7 @@ public class LastKinSearch : MonoBehaviour
     private void Awake()
     {
         searchManager = new ();
-        searchManager.Init(webViewPrefab,lastKinEventChannel);
+        searchManager.InitLastKin(webViewPrefab,lastKinEventChannel);
     }
 
     private void OnEnable()

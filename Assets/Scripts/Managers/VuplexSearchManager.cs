@@ -5,16 +5,25 @@ using Vuplex.WebView;
 public class VuplexSearchManager : BaseSearchManager
 {
     private CanvasWebViewPrefab webViewPrefab;
-    private StringEventChannel eventChannel;
+    private StringEventChannel lastKinEventChannel;
+    private StringEventChannel izkorEventChannel;
     
     private IWebView webView;
 
-    public void Init(CanvasWebViewPrefab webViewPrefab, StringEventChannel eventChannel)
+    public void InitLastKin(CanvasWebViewPrefab webViewPrefab, StringEventChannel lastKinEventChannel)
     {
         this.webViewPrefab = webViewPrefab;
-        this.eventChannel = eventChannel;
+        this.lastKinEventChannel = lastKinEventChannel;
         
-        this.eventChannel.RegisterEvent(s => LastKinFullNameSearch(s));
+        this.lastKinEventChannel.RegisterEvent(s => LastKinFullNameSearch(s));
+    }
+    
+    public void InitIzkor(StringEventChannel izkorEventChannel, CanvasWebViewPrefab webViewPrefab)
+    {
+        this.webViewPrefab = webViewPrefab;
+        this.izkorEventChannel = izkorEventChannel;
+        
+        this.izkorEventChannel.RegisterEvent(s => FullNameSearch(s));
     }
     
     public override void FullNameSearch(string fullNameString)
