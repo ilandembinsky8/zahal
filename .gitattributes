@@ -1,0 +1,4 @@
+Asset/Vuplex/Webview/Standaline/**/* filter=lfs diff=lfs merge=lfs -text
+Asset/Vuplex/Webview/Standaline/** filter=lfs diff=lfs merge=lfs -text
+Assets/Vuplex/WebView/Standalone/Windows/Plugins/*.dll filter=lfs diff=lfs merge=lfs -text
+/Assets/Vuplex/WebView/Standalone/** filter=lfs diff=lfs merge=lfs -text
