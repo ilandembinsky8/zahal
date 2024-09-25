@@ -1,19 +1,26 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using RTLTMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LastKinObject : MonoBehaviour
 {
     [SerializeField] private RTLTextMeshPro fullNameText;
-    [SerializeField] private RTLTextMeshPro rankNameText;
-    
+    [SerializeField] private Button SearchButton;
+
+    private SearchManager searchManager;
     private Casualty lastKinCasualtyData;
+    
+    private string nameToSearch;
 
     public void Init(Casualty lastKinCasualtyData)
     {
+        searchManager = new();
         this.lastKinCasualtyData = lastKinCasualtyData;
 
         UpdateText();
+        SearchButton.onClick.AddListener(SearchMe);
     }
 
     private void UpdateText()
@@ -44,18 +51,18 @@ public class LastKinObject : MonoBehaviour
         {
             strBuilder.Append(lastKinCasualtyData.LastName2 + " ");
         }
-        
-        if (!string.IsNullOrEmpty(lastKinCasualtyData.LastName2))
-        {
-            rankNameText.text = lastKinCasualtyData.LastName2;
-        }
-        else
-        {
-            rankNameText.text = "אין דרגה במסד נתונים";
-        }
 
         fullNameText.text = strBuilder.ToString();
-
+        nameToSearch = strBuilder.ToString();
     }
-    
+
+    private void SearchMe()
+    {
+        searchManager.LastKinFullNameSearch(nameToSearch);
+    }
+
+    private void OnDisable()
+    {
+        SearchButton.onClick.RemoveAllListeners();
+    }
 }
