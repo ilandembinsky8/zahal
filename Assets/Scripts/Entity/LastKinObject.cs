@@ -31,6 +31,7 @@ public class LastKinObject : MonoBehaviour
     private void OnDisable()
     {
         SearchButton.onClick.RemoveAllListeners();
+        Destroy(gameObject);
     }
 
     private void UpdateText()
@@ -49,7 +50,7 @@ public class LastKinObject : MonoBehaviour
         
         if (!string.IsNullOrEmpty(lastKinCasualtyData.NickName))
         {
-            strBuilder.Append($"({lastKinCasualtyData.NickName}) ");
+            strBuilder.Append(lastKinCasualtyData.NickName + " ");
         }
         
         if (!string.IsNullOrEmpty(lastKinCasualtyData.LastName))
@@ -63,7 +64,7 @@ public class LastKinObject : MonoBehaviour
         }
 
         fullNameText.text = strBuilder.ToString();
-        nameToSearch = strBuilder.ToString();
+        nameToSearch = lastKinCasualtyData.FirstName + " " + lastKinCasualtyData.LastName;
     }
 
     private void SearchMe()

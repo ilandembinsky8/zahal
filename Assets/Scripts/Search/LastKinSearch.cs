@@ -11,6 +11,8 @@ public class LastKinSearch : MonoBehaviour
     [SerializeField] private Button searchButton;
     [SerializeField] private CanvasWebViewPrefab webViewPrefab;
     [SerializeField] private StringEventChannel lastKinEventChannel;
+    [SerializeField] private TMP_InputField firstInput;
+    [SerializeField] private TMP_InputField lastInput;
 
     [Header("Go References")] 
     [SerializeField] private GameObject MainMenu;
@@ -57,6 +59,8 @@ public class LastKinSearch : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        firstInput.text = string.Empty;
+        lastInput.text = string.Empty;
         MainMenu.SetActive(true);
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(false);
