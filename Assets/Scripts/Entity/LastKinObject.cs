@@ -17,7 +17,9 @@ public class LastKinObject : MonoBehaviour
     public void Init(Casualty lastKinCasualtyData)
     {
         this.lastKinCasualtyData = lastKinCasualtyData;
-
+        
+        
+        
         UpdateText();
     }
 

@@ -30,13 +30,14 @@ public class LastKinSearch : MonoBehaviour
 
     private void OnEnable()
     {
+        lastKinEventChannel.RegisterEvent(s => EnableWebView());
         searchButton.onClick.AddListener(OnSearchButtonClick);
     }
     
     private void OnSearchButtonClick()
     {
-        EnableWebView();
-        searchManager.LastKinFullNameSearch($"{firstNameInput.text} {lastNameInput.text}");
+        lastKinEventChannel.Raise($"{firstNameInput.text} {lastNameInput.text}");
+        // searchManager.LastKinFullNameSearch($"{firstNameInput.text} {lastNameInput.text}");
     }
 
     private void OnDisable()
