@@ -1,5 +1,6 @@
 ﻿using System;
 using RTLTMPro;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Vuplex.WebView;
@@ -11,7 +12,9 @@ public class IzkorSearch : MonoBehaviour
     [SerializeField] private Button searchButton;
     [SerializeField] private CanvasWebViewPrefab canvasWebViewPrefab;
     [SerializeField] private StringEventChannel izokrEventChannel;
-
+    [SerializeField] private TMP_InputField firstInput;
+    [SerializeField] private TMP_InputField lastInput;
+    
     [Header("Go References")] 
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject SearchMenu;
@@ -52,6 +55,8 @@ public class IzkorSearch : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        firstInput.text = string.Empty;
+        lastInput.text = string.Empty;
         MainMenu.SetActive(true);
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(false);
