@@ -3,21 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class VideoManager : MonoBehaviour
 {
     [SerializeField] private VideoPlayer videoPlayer;
-    [SerializeField] private RawImage rawImage;
-
+    
     private static string _videoPath = Application.streamingAssetsPath + "\\LastKinVideo.mp4";
 
     private bool _isVideoFound;
-    
-    private void Start()
+
+    private void Awake()
     {
         ValidateVideoExistence();
+        videoPlayer.playOnAwake = true;
+        videoPlayer.Prepare();
     }
     
     private void ValidateVideoExistence()
@@ -28,16 +28,5 @@ public class VideoManager : MonoBehaviour
             _isVideoFound = true;
             videoPlayer.url = _videoPath;
         }
-    }
-
-    private void OnEnable()
-    {
-        videoPlayer.time = 0;
-        videoPlayer.Play();
-    }
-
-    private void OnDisable()
-    {
-        videoPlayer.Stop();
     }
 }

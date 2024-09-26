@@ -15,7 +15,13 @@ public class SceneLoaderManager : MonoBehaviour
         if (index != -1)
         {
             SceneManager.LoadScene(index);
+            return;
         }
+
+        Debug.LogError("sceneConfig file are either is not found. or setup the wrong way." +
+                       $"if it is not there, add a sceneConfig.txt into and make sure this path is compelte{SceneConfigPath}" +
+                       $"if not. make sure the following format is applied to one of the lines:" +
+                       $"'sceneIndex=sceneNumber=', the scene number can be either 1 or 2");
     }
 
     int GetSceneIndex()
@@ -30,7 +36,10 @@ public class SceneLoaderManager : MonoBehaviour
                     string[] configLine = line.Split("=");
                     if (Int32.TryParse(configLine[1], out int index))
                     {
-                        return index;
+                        if (index == 1 || index == 2)
+                        {
+                            return index;
+                        }
                     }
                 }
             }
