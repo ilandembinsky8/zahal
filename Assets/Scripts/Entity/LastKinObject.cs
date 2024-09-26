@@ -18,8 +18,6 @@ public class LastKinObject : MonoBehaviour
     {
         this.lastKinCasualtyData = lastKinCasualtyData;
         
-        
-        
         UpdateText();
     }
 
@@ -31,7 +29,6 @@ public class LastKinObject : MonoBehaviour
     private void OnDisable()
     {
         SearchButton.onClick.RemoveAllListeners();
-        Destroy(gameObject);
     }
 
     private void UpdateText()
