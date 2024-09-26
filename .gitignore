@@ -149,3 +149,5 @@ sysinfo.txt
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 Assets/StreamingAssets/sceneConfig.txt
+Assets/Vuplex/WebView/Standalone/Windows/Plugins/VuplexWebViewChromium/log-chromium.txt~
+Assets/Vuplex/WebView/Standalone/Windows/Plugins/VuplexWebViewChromium/debug.log

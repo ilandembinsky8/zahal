@@ -19,6 +19,7 @@ public class LastKinSearch : MonoBehaviour
     [SerializeField] private GameObject SearchMenu;
     [SerializeField] private GameObject ListMenu;
     [SerializeField] private GameObject VuplexWebView;
+    [SerializeField] private GameObject VideoMenu;
     
     private VuplexSearchManager searchManager;
 
@@ -55,6 +56,7 @@ public class LastKinSearch : MonoBehaviour
         MainMenu.SetActive(true);
         SearchMenu.SetActive(false);
         ListMenu.SetActive(false);
+        VideoMenu.SetActive(false);
     }
 
     public void ReturnToMainMenu()
@@ -65,6 +67,7 @@ public class LastKinSearch : MonoBehaviour
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(false);
         ListMenu.SetActive(false);
+        VideoMenu.SetActive(false);
     }
 
     public void EnableSearch()
@@ -73,6 +76,7 @@ public class LastKinSearch : MonoBehaviour
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(true);
         ListMenu.SetActive(false);
+        VideoMenu.SetActive(false);
     }
 
     public void EnableList()
@@ -81,6 +85,16 @@ public class LastKinSearch : MonoBehaviour
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(false);
         ListMenu.SetActive(true);
+        VideoMenu.SetActive(false);
+    }
+    
+    public void EnableVideoPanel()
+    {
+        VideoMenu.SetActive(true);
+        VuplexWebView.SetActive(false);
+        MainMenu.SetActive(false);
+        SearchMenu.SetActive(false);
+        ListMenu.SetActive(false);
     }
     
     #endregion
