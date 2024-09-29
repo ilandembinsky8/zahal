@@ -28,7 +28,7 @@ public class LastKinSearch : MonoBehaviour
     
     private VuplexSearchManager searchManager;
 
-    private const float TIME_THRESHOLD = 80f;
+    private const float TIME_THRESHOLD = 62f;
     private bool canIdle;
     private float elapsedTimer = 0;
     
@@ -84,6 +84,7 @@ public class LastKinSearch : MonoBehaviour
     public void ReturnToMainMenu()
     {
         canIdle = false;
+        ResetClock();
         ToggleVuplexRenderers(false);
         firstInput.text = string.Empty;
         lastInput.text = string.Empty;
