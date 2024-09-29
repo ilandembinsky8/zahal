@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 7275648283535447649}
   - component: {fileID: 7178895528837839335}
   m_Layer: 5
-  m_Name: ZahalWebViewPrefab
+  m_Name: ReturnButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -689,6 +689,8 @@ MonoBehaviour:
   MainMenu: {fileID: 1191500587}
   SearchMenu: {fileID: 440002538}
   VuplexWebView: {fileID: 318322804}
+  VuplexPageRenderer: {fileID: 1520099095}
+  VuplexPageRenderer2: {fileID: 1736068312}
 --- !u!114 &1395927414 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1262415266299835403, guid: 99b5391e66f770e4c8238ade4ad9d812, type: 3}
@@ -700,6 +702,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1520099095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5387838252723697373, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+  m_PrefabInstance: {fileID: 2180250831356059658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1736068312 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6265995594579702251, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+  m_PrefabInstance: {fileID: 2180250831356059658}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2071725530
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,6 +818,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WebPrefabPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 875018066490728400, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481044317839107027, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3539776586499935252, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -886,10 +906,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5387838252723697373, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6265995594579702251, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178895528837839335, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178895528837839335, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7178895528837839335, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1225744986}
+    - target: {fileID: 7178895528837839335, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178895528837839335, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToMainMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178895528837839335, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: IzkorSearch, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7178895528837839335, guid: b9ed8c37d147bd648af160930b58906f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: LastKinSearch, Logic
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

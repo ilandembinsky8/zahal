@@ -1,15 +1,21 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using Vuplex.WebView;
 
 public class VuplexSearchManager : BaseSearchManager
 {
+    public event Action PageLoaded;
+    
     private CanvasWebViewPrefab webViewPrefab;
     private StringEventChannel lastKinEventChannel;
     private StringEventChannel izkorEventChannel;
     
     private IWebView webView;
 
+    private bool isInit;
+    private bool isLoaded;
+    
     public void InitLastKin(CanvasWebViewPrefab webViewPrefab, StringEventChannel lastKinEventChannel)
     {
         this.webViewPrefab = webViewPrefab;
@@ -40,6 +46,10 @@ public class VuplexSearchManager : BaseSearchManager
     {
         webViewPrefab.InitialUrl = escapeURL;
         await webViewPrefab.WaitUntilInitialized();
+        Debug.Log("Initialized");
         webViewPrefab.WebView.LoadUrl(escapeURL);
+        await webViewPrefab.WebView.WaitForNextPageLoadToFinish();
+        Debug.Log("PageLoaded");
+        PageLoaded?.Invoke();
     }
 }

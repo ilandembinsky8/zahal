@@ -20,6 +20,8 @@ public class LastKinSearch : MonoBehaviour
     [SerializeField] private GameObject ListMenu;
     [SerializeField] private GameObject VuplexWebView;
     [SerializeField] private GameObject VideoMenu;
+    [SerializeField] private GameObject VuplexPageRenderer;
+    [SerializeField] private GameObject VuplexPageRenderer2;
     
     private VuplexSearchManager searchManager;
 
@@ -35,12 +37,24 @@ public class LastKinSearch : MonoBehaviour
     {
         lastKinEventChannel.RegisterEvent(s => EnableWebView());
         searchButton.onClick.AddListener(OnSearchButtonClick);
+        searchManager.PageLoaded += ToggleVuplexRenderers;
+    }
+    
+    private void ToggleVuplexRenderers()
+    {
+        VuplexPageRenderer.SetActive(!VuplexPageRenderer.activeInHierarchy);
+        VuplexPageRenderer2.SetActive(!VuplexPageRenderer2.activeInHierarchy);
+    }
+    
+    private void ToggleVuplexRenderers(bool isActive)
+    {
+        VuplexPageRenderer.SetActive(isActive);
+        VuplexPageRenderer2.SetActive(isActive);
     }
     
     private void OnSearchButtonClick()
     {
         lastKinEventChannel.Raise($"{firstNameInput.text} {lastNameInput.text}");
-        // searchManager.LastKinFullNameSearch($"{firstNameInput.text} {lastNameInput.text}");
     }
 
     private void OnDisable()
@@ -61,6 +75,7 @@ public class LastKinSearch : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        ToggleVuplexRenderers(false);
         firstInput.text = string.Empty;
         lastInput.text = string.Empty;
         MainMenu.SetActive(true);

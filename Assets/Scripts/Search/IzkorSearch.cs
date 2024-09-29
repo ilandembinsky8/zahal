@@ -19,6 +19,8 @@ public class IzkorSearch : MonoBehaviour
     [SerializeField] private GameObject MainMenu;
     [SerializeField] private GameObject SearchMenu;
     [SerializeField] private GameObject VuplexWebView;
+    [SerializeField] private GameObject VuplexPageRenderer;
+    [SerializeField] private GameObject VuplexPageRenderer2;
     
     private VuplexSearchManager searchManager;
     
@@ -32,8 +34,21 @@ public class IzkorSearch : MonoBehaviour
     {
         izokrEventChannel.RegisterEvent(s => EnableWebView());
         searchButton.onClick.AddListener(OnSearchButtonClicked);
+        searchManager.PageLoaded += ToggleVuplexRenderers;
+    }
+
+    private void ToggleVuplexRenderers()
+    {
+        VuplexPageRenderer.SetActive(!VuplexPageRenderer.activeInHierarchy);
+        VuplexPageRenderer2.SetActive(!VuplexPageRenderer2.activeInHierarchy);
     }
     
+    private void ToggleVuplexRenderers(bool isActive)
+    {
+        VuplexPageRenderer.SetActive(isActive);
+        VuplexPageRenderer2.SetActive(isActive);
+    }
+
     private void OnSearchButtonClicked()
     {
         izokrEventChannel.Raise($"{firstNameInput.text} {lastNameInput.text}");
@@ -55,6 +70,7 @@ public class IzkorSearch : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        ToggleVuplexRenderers(false);
         firstInput.text = string.Empty;
         lastInput.text = string.Empty;
         MainMenu.SetActive(true);
