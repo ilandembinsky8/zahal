@@ -3,11 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Video;
 
 public class VideoManager : MonoBehaviour
 {
     [SerializeField] private VideoPlayer videoPlayer;
+ 
+    public UnityEvent OnVideoEnded;
     
     private static string _videoPath = Application.streamingAssetsPath + "\\LastKinVideo.mp4";
 
@@ -18,6 +21,7 @@ public class VideoManager : MonoBehaviour
         ValidateVideoExistence();
         videoPlayer.playOnAwake = true;
         videoPlayer.Prepare();
+        videoPlayer.loopPointReached += source => OnVideoEnded.Invoke();
     }
     
     private void ValidateVideoExistence()

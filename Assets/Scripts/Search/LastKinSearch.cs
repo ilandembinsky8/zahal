@@ -1,11 +1,14 @@
-﻿using RTLTMPro;
+﻿using System;
+using RTLTMPro;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Vuplex.WebView;
 
 public class LastKinSearch : MonoBehaviour
 {
+    [SerializeField] private VideoManager videoManager;
     [SerializeField] private RTLTextMeshPro firstNameInput;
     [SerializeField] private RTLTextMeshPro lastNameInput;
     [SerializeField] private Button searchButton;
@@ -25,6 +28,10 @@ public class LastKinSearch : MonoBehaviour
     
     private VuplexSearchManager searchManager;
 
+    private const float TIME_THRESHOLD = 80f;
+    private bool canIdle;
+    private float elapsedTimer = 0;
+    
     private TMP_InputField first;
     private TMP_InputField last;
     private void Awake()
@@ -66,6 +73,7 @@ public class LastKinSearch : MonoBehaviour
     
     public void EnableWebView()
     {
+        canIdle = true;
         VuplexWebView.SetActive(true);
         MainMenu.SetActive(true);
         SearchMenu.SetActive(false);
@@ -75,6 +83,7 @@ public class LastKinSearch : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        canIdle = false;
         ToggleVuplexRenderers(false);
         firstInput.text = string.Empty;
         lastInput.text = string.Empty;
@@ -87,6 +96,7 @@ public class LastKinSearch : MonoBehaviour
 
     public void EnableSearch()
     {
+        canIdle = true;
         MainMenu.SetActive(false);
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(true);
@@ -96,6 +106,7 @@ public class LastKinSearch : MonoBehaviour
 
     public void EnableList()
     {
+        canIdle = true;
         MainMenu.SetActive(false);
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(false);
@@ -105,6 +116,7 @@ public class LastKinSearch : MonoBehaviour
     
     public void EnableVideoPanel()
     {
+        canIdle = false;
         VideoMenu.SetActive(true);
         VuplexWebView.SetActive(false);
         MainMenu.SetActive(false);
@@ -112,5 +124,34 @@ public class LastKinSearch : MonoBehaviour
         ListMenu.SetActive(false);
     }
     
+    #endregion
+
+    #region Idle
+
+    private void Update()
+    {
+        if (canIdle)
+        {
+            elapsedTimer += Time.deltaTime;
+            
+            if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
+            {
+                ResetClock();
+            }
+
+            if (elapsedTimer >= TIME_THRESHOLD)
+            {
+                canIdle = false;
+                ResetClock();
+                ReturnToMainMenu();
+            }
+        }
+    }
+
+    private void ResetClock()
+    {
+        elapsedTimer = 0;
+    }
+
     #endregion
 }

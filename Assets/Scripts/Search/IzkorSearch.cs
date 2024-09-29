@@ -2,6 +2,7 @@
 using RTLTMPro;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Vuplex.WebView;
 
@@ -23,6 +24,10 @@ public class IzkorSearch : MonoBehaviour
     [SerializeField] private GameObject VuplexPageRenderer2;
     
     private VuplexSearchManager searchManager;
+    
+    private const float TIME_THRESHOLD = 80f;
+    private bool canIdle;
+    private float elapsedTimer = 0;
     
     private void Awake()
     {
@@ -63,6 +68,7 @@ public class IzkorSearch : MonoBehaviour
     
     public void EnableWebView()
     {
+        canIdle = true;
         VuplexWebView.SetActive(true);
         MainMenu.SetActive(true);
         SearchMenu.SetActive(false);
@@ -70,6 +76,7 @@ public class IzkorSearch : MonoBehaviour
 
     public void ReturnToMainMenu()
     {
+        canIdle = false;
         ToggleVuplexRenderers(false);
         firstInput.text = string.Empty;
         lastInput.text = string.Empty;
@@ -80,10 +87,40 @@ public class IzkorSearch : MonoBehaviour
 
     public void EnableSearch()
     {
+        canIdle = true;
         MainMenu.SetActive(false);
         VuplexWebView.SetActive(false);
         SearchMenu.SetActive(true);
     }
     
+    #endregion
+    
+    #region Idle
+
+    private void Update()
+    {
+        if (canIdle)
+        {
+            elapsedTimer += Time.deltaTime;
+            
+            if (Input.anyKeyDown || Input.GetMouseButtonDown(0))
+            {
+                ResetClock();
+            }
+
+            if (elapsedTimer >= TIME_THRESHOLD)
+            {
+                canIdle = false;
+                ResetClock();
+                ReturnToMainMenu();
+            }
+        }
+    }
+
+    private void ResetClock()
+    {
+        elapsedTimer = 0;
+    }
+
     #endregion
 }

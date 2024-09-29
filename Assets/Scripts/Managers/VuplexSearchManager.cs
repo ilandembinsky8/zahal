@@ -22,6 +22,8 @@ public class VuplexSearchManager : BaseSearchManager
         this.lastKinEventChannel = lastKinEventChannel;
         
         this.lastKinEventChannel.RegisterEvent(s => LastKinFullNameSearch(s));
+        
+        
     }
     
     public void InitIzkor(StringEventChannel izkorEventChannel, CanvasWebViewPrefab webViewPrefab)
